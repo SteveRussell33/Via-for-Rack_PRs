@@ -85,7 +85,7 @@ struct ViaComplexButtonQuantity : ParamQuantity {
 
 struct ViaKnobQuantity : ParamQuantity {
 
-    std::string stripScientificNotation(std::string s) {
+    static std::string stripScientificNotation(const std::string& s) {
         return s.substr(0, s.size() - 4);
     }
 
@@ -99,7 +99,7 @@ struct ViaKnobQuantity : ParamQuantity {
 
         setLabel();
 
-        return translateParameter(getSmoothValue());
+        return translateParameter(getValue());
     }
 
     int getDisplayPrecision() override {

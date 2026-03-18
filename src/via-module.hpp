@@ -62,9 +62,9 @@ struct Via : Module {
 
     }
 
-    TARGET_VIA * virtualIO;
+    TARGET_VIA * virtualIO {};
 
-    uint32_t presetData[6];
+    uint32_t presetData[6] {};
     
     dsp::SchmittTrigger mainLogic;
     dsp::SchmittTrigger auxLogic;
@@ -268,7 +268,7 @@ struct Via : Module {
 
     // minblep helpers
 
-    int32_t crossed0(uint32_t lastPhase, int32_t increment) {
+    static int32_t crossed0(uint32_t lastPhase, int32_t increment) {
 
         int64_t currentPhase = (int64_t) lastPhase + (int64_t) increment;
 
@@ -284,7 +284,7 @@ struct Via : Module {
 
     }
 
-    int32_t crossed2(uint32_t lastPhase, int32_t increment) {
+    static int32_t crossed2(uint32_t lastPhase, int32_t increment) {
 
         int64_t currentPhase = (int64_t) lastPhase + (int64_t) increment;
 
@@ -323,7 +323,7 @@ struct Via : Module {
             if (!module)
                 return "";
 
-            float v = getSmoothValue();
+            float v = getValue();
 
             if (bConnected()) {
                 return string::f("%.*g", 2, v);
@@ -378,7 +378,7 @@ struct Via : Module {
 
         std::string getDisplayValueString() override {
 
-            float v = getSmoothValue();
+            float v = getValue();
 
             return string::f("%.*g", 2, v);                
 
@@ -418,7 +418,7 @@ struct Via : Module {
 
         std::string getDisplayValueString() override {
 
-            float v = getSmoothValue();
+            float v = getValue();
 
             return string::f("%.*g", 3, v);                
 
@@ -451,7 +451,7 @@ struct Via : Module {
 
         std::string getDisplayValueString() override {
 
-            float v = getSmoothValue();
+            float v = getValue();
 
             return string::f("%.*g", 3, v);                
 
